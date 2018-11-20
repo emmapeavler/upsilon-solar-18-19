@@ -1,12 +1,13 @@
 # upsilon-solar-18-19
 import time
 class Solarcell(object):
-  def __init__(self, material, bandgap, inducedV, valence, cost):
+  def __init__(self, material, bandgap, inducedV, valence, cost,particles):
     self.material = material #string that is the name of the material
     self.bandgap = bandgap #in electron volts (eV)
     self.valence = valence #valence electron energy (we can use this for the physics of the photons hitting the electrons)
     self.cost = cost
     self.inducedV = inducedV
+    self.particles = particles
 
 class Particle(object):
     def __init__(self, material, bandgap, valence, posx, posy):
@@ -44,13 +45,14 @@ vel = 0
 # and expand upon it, think about assumptions we can make to make our lives easy (ex:  perfectly
 # elastic collisions), which should help simplify creating photons and having them hit the material atoms
 
-silicon = Solarcell(material, bandgap, inducedV, valence, cost)
-siliconparts = []
+
+particles = []
+silicon = Solarcell(material, bandgap, inducedV, valence, cost, particles)
 for i in range(1,11):
     posx = i
     posy = 1
     newpart = Particle(material, bandgap, valence, posx, posy, vel)
-    siliconparts.append(newpart)
+    particles.append(newpart)
 
 for part in siliconparts:
     print(part.posx , part.posy)
